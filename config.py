@@ -10,3 +10,6 @@ MANIFEST_DEFAULT_FILTER = {
     "field_manifestation_typ.id": HISTORISCHE_AUSGABE,
     "field_status_umschrift": 2
 }
+
+MAN_CSV = "./data/manifestations.csv"
+UMSCHRIFT_DATA = "./data/umschrift.json"

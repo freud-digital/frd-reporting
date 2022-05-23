@@ -7,6 +7,7 @@ jobs:
   build_pages:
     name: Publish Edition as GitHub Pages Website
     runs-on: ubuntu-latest
+    steps:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:

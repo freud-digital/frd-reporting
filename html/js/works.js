@@ -1,7 +1,7 @@
 Highcharts.getJSON(
-    '../data/manifestations_hc.json',
+    'data/works_hc.json',
     function (data) {  
-        Highcharts.chart('container_manifestations', {
+        Highcharts.chart('container_works', {
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,
@@ -9,7 +9,7 @@ Highcharts.getJSON(
             },
             title: '',
             tooltip: {
-                pointFormat: 'Manifestations: <b>{point.y}</b>'
+                pointFormat: 'Werke: <b>{point.percentage:.1f}%</b>'
             },
             accessibility: {
                 point: {

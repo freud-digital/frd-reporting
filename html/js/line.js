@@ -1,5 +1,5 @@
 Highcharts.getJSON(
-    '../data/umschrift_hc.json',
+    'data/umschrift_hc.json',
     function (data) {
 
         Highcharts.chart('container', {

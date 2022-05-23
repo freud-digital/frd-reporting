@@ -11,5 +11,10 @@ MANIFEST_DEFAULT_FILTER = {
     "field_status_umschrift": 2
 }
 
-MAN_CSV = "./data/manifestations.csv"
-UMSCHRIFT_DATA = "./data/umschrift.json"
+MAN_CSV = "./html/data/manifestations.csv"
+UMSCHRIFT_DATA = "./html/data/umschrift.json"
+
+DIPL_UMSCHRIFT_MAPPING = {
+    0: "Umschrift fehlt",
+    2: "Umschrift vorhanden"
+}

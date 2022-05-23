@@ -1,9 +1,8 @@
 name: Build and publish
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
   schedule:
-    # * is a special character in YAML so you have to quote this string
     - cron:  '11 1,13 * * *'
 
 

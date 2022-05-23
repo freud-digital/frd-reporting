@@ -4,5 +4,5 @@ from utils import yield_manifestation
 
 df = pd.DataFrame(yield_manifestation())
 work_sig_df = pd.read_csv(WORK_SIGNATURS)
-merged = pd.merge(df, df, on='werk_signatur_id')
+merged = pd.merge(df, work_sig_df, on='werk_signatur_id')
 merged.to_csv(MAN_CSV, index=False)

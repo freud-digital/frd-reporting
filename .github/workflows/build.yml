@@ -30,9 +30,7 @@ jobs:
         pip install --upgrade --upgrade-strategy eager -r requirements.txt
     - name: Update Stats
       run: |
-        python dl_work_signatures.py
-        python dl_stats.py
-        python umschrift_stats.py
+        ./script.sh
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Downloaded/Updated Data

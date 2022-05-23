@@ -9,7 +9,7 @@ Highcharts.getJSON(
             },
             title: '',
             tooltip: {
-                pointFormat: 'Werke: <b>{point.percentage:.1f}%</b>'
+                pointFormat: 'Werke: <b>{point.y}</b>'
             },
             accessibility: {
                 point: {

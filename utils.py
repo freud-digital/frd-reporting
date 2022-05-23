@@ -17,7 +17,7 @@ def yield_manifestation():
         :return: Yields a dict
         """
     next_page = True
-    url = f"{frd.FRD_API}node/manifestation?filter[field_doc_component.id]={frd.FULL_MANIFEST}&filter[field_manifestation_typ.id]={frd.HISTORISCHE_AUSGABE}&include=field_werk"
+    url = f"{frd.FRD_API}node/manifestation?filter[field_doc_component.id]={frd.FULL_MANIFEST}&filter[field_manifestation_typ.id]={frd.HISTORISCHE_AUSGABE}&include=field_werk"  # noqa: E501
     while next_page:
         print(url)
         response = None
@@ -54,7 +54,7 @@ def yield_manifestation():
                     'work_id': x['relationships']['field_werk']['data']['id']
                 }
                 mans.append(man)
-            except:
+            except:  # noqa: E722
                 continue
         for x in result['included']:
             try:
@@ -65,10 +65,10 @@ def yield_manifestation():
                     'work_changed': x['attributes']['changed'],
                 }
                 works.append(work)
-            except:
+            except:  # noqa: E722
                 continue
         man_df = pd.DataFrame(mans)
         work_df = pd.DataFrame(works)
-        merged =pd.merge(man_df, work_df, on='work_id')
+        merged = pd.merge(man_df, work_df, on='work_id')
         for record in merged.to_dict(orient='records'):
             yield(record)

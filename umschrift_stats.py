@@ -1,7 +1,8 @@
 import time
 import pandas as pd
 import json
-from config import MAN_CSV, UMSCHRIFT_DATA, DIPL_UMSCHRIFT_MAPPING, ALL_MAN
+from collections import Counter
+from config import MAN_CSV, UMSCHRIFT_DATA, DIPL_UMSCHRIFT_MAPPING, ALL_MAN, STOPWORDS
 
 df = pd.read_csv(MAN_CSV)
 
@@ -65,6 +66,25 @@ with open(f"{UMSCHRIFT_DATA.replace('umschrift.json', 'manifestations_hc.json')}
     json.dump(data, f, ensure_ascii=True)
 
 df = pd.read_csv(ALL_MAN)
+with open(STOPWORDS, 'r') as f:
+    stopwords = f.read().split(',')
+text = " ".join([x.split(':')[-1].strip().lower() for x in list(set(df.work_title))]).split()
+text = [x for x in text if len(x) > 3]
+text = [x for x in text if not '[' in x]  # noqa: E713
+text = [x for x in text if not '›' in x]  # noqa: E713
+text = [x for x in text if not ']' in x]  # noqa: E713
+text = [x for x in text if not '‹' in x]  # noqa: E713
+token = [x for x in text if not x in stopwords]  # noqa: E713
+hansi = Counter(token)
+data = [
+    {
+        "name": key,
+        "weight": value
+    } for key, value in Counter(token).items() if value > 1
+]
+with open(f"{UMSCHRIFT_DATA.replace('umschrift.json', 'wordcloud_data.json')}", 'w') as f:
+    json.dump(data, f, ensure_ascii=True)
+
 man_stat = dict(df.groupby('fwf').size())
 data = [
     ['FWF' if key else 'Nicht FWF', int(value)] for key, value in man_stat.items()

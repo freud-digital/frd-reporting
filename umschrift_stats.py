@@ -5,6 +5,13 @@ from config import MAN_CSV, UMSCHRIFT_DATA, DIPL_UMSCHRIFT_MAPPING, ALL_MAN
 
 df = pd.read_csv(MAN_CSV)
 
+hansi = df.to_json(orient='records')
+data_table = {
+    'data': json.loads(hansi)
+}
+with open(f"{MAN_CSV.replace('manifestations.csv', 'data_table.json', )}", 'w') as f:
+    json.dump(data_table, f, ensure_ascii=False)
+
 with open(UMSCHRIFT_DATA, 'r') as f:
     data = json.load(f)
 

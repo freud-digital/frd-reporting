@@ -15,6 +15,10 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/date-1.1.1/r-2.2.9/sp-1.4.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
 
     <title>FRD-Reporting</title>
 </head>
@@ -57,14 +61,35 @@
                 </figure>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Manifestationen & und Werke</h3>
+                <table id="example" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Manifestation Signatur</th>
+                            <th>Manifestation Title</th>
+                            <th>Status Umschrift</th>
+                            <th>Seiten</th>
+                            <th>Kapitel</th>
+                            <th>Werk Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Manifestation Signatur</th>
+                            <th>Manifestation Title</th>
+                            <th>Status Umschrift</th>
+                            <th>Seiten</th>
+                            <th>Kapitel</th>
+                            <th>Werk Title</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    
 
-    
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
@@ -72,12 +97,51 @@
     <script src="js/works.js"></script>
     <script src="js/manifestations.js"></script>
     <script src="js/line.js"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable(
+                {
+                    ajax: 'data/data_table.json',
+                    deferRender: true,
+                    columns: [
+                        {
+                            data: 'man_full_sig',
+                            render: function (data, type, row) {
+                                if (type === 'display') {
+                                    let link = row.man_website_url;
+                                    return '<a href="' + link + '">' + data + '</a>';
+                                }
+            
+                                return data;
+                            },
+                        },
+                        { data: 'man_title' },
+                        { data: 'man_field_status_umschrift' },
+                        { data: 'man_pages' },
+                        { data: 'man_chapters' },
+                        { 
+                            data: 'work_title',
+                            render: function (data, type, row) {
+                                if (type === 'display') {
+                                    let link = row.werk_website_url;
+                                    return '<a href="' + link + '" target="_blank">' + data + '</a>';
+                                }
+            
+                                return data;
+                            },
+                        },
+                    ],
+                    dom: 'PfrtipB',
+                    searchPanes: {
+                        initCollapsed: true
+                    },
+                    buttons: [
+                        'copy', 'excel', 'pdf'
+                    ]
+                }   
+            );
+        } );
+    </script>
 </body>
 
 </html>

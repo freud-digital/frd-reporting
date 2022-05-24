@@ -68,7 +68,7 @@ def yield_manifestation():
                     'work_created': x['attributes']['created'],
                     'work_changed': x['attributes']['changed'],
                     'werk_signatur_id': x['relationships']['field_signatur_sfe']['data']['id'],
-                    'man_website_url': f"https://www.freud-edition.net{x['attributes']['path']['alias']}",
+                    'werk_website_url': f"https://www.freud-edition.net{x['attributes']['path']['alias']}",
                 }
                 works.append(work)
             except:  # noqa: E722

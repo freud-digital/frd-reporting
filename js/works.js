@@ -7,7 +7,9 @@ Highcharts.getJSON(
                 plotBorderWidth: 0,
                 plotShadow: false
             },
-            title: '',
+            title: {
+                'text': data[0][1]+data[1][1]+data[2][1]
+            },
             tooltip: {
                 pointFormat: 'Werke: <b>{point.y}</b>'
             },

@@ -1,7 +1,7 @@
 Highcharts.getJSON(
-    'data/manifestations_hc.json',
+    'data/all_works_hc.json',
     function (data) {  
-        Highcharts.chart('container_manifestations', {
+        Highcharts.chart('container_works_all', {
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,
@@ -11,7 +11,7 @@ Highcharts.getJSON(
                 'text': data[0][1]+data[1][1]
             },
             tooltip: {
-                pointFormat: 'Manifestations: <b>{point.y}</b>'
+                pointFormat: 'Werke: <b>{point.y}</b>'
             },
             accessibility: {
                 point: {

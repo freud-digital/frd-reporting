@@ -51,6 +51,9 @@ def yield_manifestation():
                     'man_sig': x['attributes']['field_signatur_sfe_type'],
                     'man_created': x['attributes']['created'],
                     'man_changed': x['attributes']['changed'],
+                    'man_pages': len(x['relationships']['field_seiten']['data']),
+                    'man_chapters': len(x['relationships']['field_chapters']['data']),
+                    'man_website_url': f"https://www.freud-edition.net{x['attributes']['path']['alias']}",
                     'work_id': x['relationships']['field_werk']['data']['id']
                 }
                 mans.append(man)
@@ -63,7 +66,8 @@ def yield_manifestation():
                     'work_title': x['attributes']['title'],
                     'work_created': x['attributes']['created'],
                     'work_changed': x['attributes']['changed'],
-                    'werk_signatur_id': x['relationships']['field_signatur_sfe']['data']['id']
+                    'werk_signatur_id': x['relationships']['field_signatur_sfe']['data']['id'],
+                    'man_website_url': f"https://www.freud-edition.net{x['attributes']['path']['alias']}",
                 }
                 works.append(work)
             except:  # noqa: E722

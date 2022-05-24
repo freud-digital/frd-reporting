@@ -24,16 +24,24 @@
         <h1>FRD-Reporting</h1>
         <h2>Einige Statistiken zum Freud-Projekt</h2>
         <div class="row">
-            <div class="col-md-6">
-                <h3>Anzahl Werke</h3>
+            <div class="col-md-4">
+                <h3>Anzahl Werke gesamt</h3>
+                <div class="col-md-12">
+                    <figure class="highcharts-figure">
+                        <div id="container_works_all"></div>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>Transkribierte Werke FWF</h3>
                 <div class="col-md-12">
                     <figure class="highcharts-figure">
                         <div id="container_works"></div>
                     </figure>
                 </div>
             </div>
-            <div class="col-md-6">
-                <h3>Anzahl Manifestationen</h3>
+            <div class="col-md-4">
+                <h3>Transkribierte Manifestationen FWF</h3>
                 <div class="col-md-12">
                     <figure class="highcharts-figure">
                         <div id="container_manifestations"></div>
@@ -60,6 +68,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="js/all_works.js"></script>
     <script src="js/works.js"></script>
     <script src="js/manifestations.js"></script>
     <script src="js/line.js"></script>

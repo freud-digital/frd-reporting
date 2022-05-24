@@ -1,7 +1,7 @@
 import time
 import pandas as pd
 import json
-from config import MAN_CSV, UMSCHRIFT_DATA, DIPL_UMSCHRIFT_MAPPING
+from config import MAN_CSV, UMSCHRIFT_DATA, DIPL_UMSCHRIFT_MAPPING, ALL_MAN
 
 df = pd.read_csv(MAN_CSV)
 
@@ -55,4 +55,13 @@ data = [
 ]
 
 with open(f"{UMSCHRIFT_DATA.replace('umschrift.json', 'manifestations_hc.json')}", 'w') as f:
+    json.dump(data, f, ensure_ascii=True)
+
+df = pd.read_csv(ALL_MAN)
+man_stat = dict(df.groupby('fwf').size())
+data = [
+    ['FWF' if key else 'Nicht FWF', int(value)] for key, value in man_stat.items()
+]
+
+with open(f"{UMSCHRIFT_DATA.replace('umschrift.json', 'all_works_hc.json')}", 'w') as f:
     json.dump(data, f, ensure_ascii=True)

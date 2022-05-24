@@ -12,6 +12,7 @@ MANIFEST_DEFAULT_FILTER = {
 }
 
 MAN_CSV = "./html/data/manifestations.csv"
+ALL_MAN = MAN_CSV.replace('manifestations', 'manifestations_all')
 WORK_SIGNATURS = "./html/data/work_signatures.csv"
 UMSCHRIFT_DATA = "./html/data/umschrift.json"
 

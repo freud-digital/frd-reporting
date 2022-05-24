@@ -19,3 +19,5 @@ DIPL_UMSCHRIFT_MAPPING = {
     0: "Umschrift fehlt",
     2: "Umschrift vorhanden"
 }
+
+FWF_I = list(range(1900, 1906)) + list(range(1920, 1926))

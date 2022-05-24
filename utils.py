@@ -1,6 +1,7 @@
 import requests
 import time
 import pandas as pd
+from config import FWF_I
 from freud_api_crawler import freud_api_crawler as frd
 from freud_api_crawler.string_utils import always_https
 
@@ -23,7 +24,7 @@ def yield_manifestation():
         response = None
         result = None
         x = None
-        time.sleep(0.05)
+        time.sleep(0.07)
         response = requests.get(
             url,
             cookies=frd.AUTH_ITEMS['cookie'],
@@ -116,3 +117,12 @@ def yield_werk_signaturs():
                 'werk_signatur': x['attributes']['name']
             }
             yield(item)
+
+
+def fwf_col(row):
+    year = row['werk_signatur'][:4]
+    if year in [str(x) for x in FWF_I]:
+        value = True
+    else:
+        value = False
+    return value

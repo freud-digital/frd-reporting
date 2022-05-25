@@ -6,6 +6,31 @@ from config import MAN_CSV, UMSCHRIFT_DATA, DIPL_UMSCHRIFT_MAPPING, ALL_MAN, STO
 
 df = pd.read_csv(MAN_CSV)
 
+work_stat = []
+for i, x in df.groupby('work_id'):
+    status = set()
+    for i, row in x.iterrows():
+        status.add(row['man_field_status_umschrift'])
+    if len(status) > 1:
+        item = {
+            'work_id': row['work_id'],
+            'work_status': "Teilweise transkribiert"
+        }
+    elif list(status)[0] == 0:
+        item = {
+            'work_id': row['work_id'],
+            'work_status': "Keine Transkripte"
+        }
+    else:
+        item = {
+            'work_id': row['work_id'],
+            'work_status': "Fertig transkribiert"
+        }
+    work_stat.append(item)
+work_stat_df = pd.DataFrame(work_stat)
+merged = pd.merge(df, work_stat_df, on='work_id')
+merged.to_csv(MAN_CSV)
+
 hansi = df.to_json(orient='records')
 data_table = {
     'data': json.loads(hansi)

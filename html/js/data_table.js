@@ -14,7 +14,14 @@ $(document).ready(function () {
                 },
             },
             {
-                data: 'man_title'
+                data: 'man_title',
+                render: function (data, type, row) {
+                    if (type === 'display') {
+                        let hash_id = row.man_id;
+                        return data + '<br />' + '<small>' + hash_id + '</small>'
+                    }
+                    return data;
+                },
             },
             {
                 data: 'man_field_status_umschrift'
@@ -30,7 +37,8 @@ $(document).ready(function () {
                 render: function (data, type, row) {
                     if (type === 'display') {
                         let link = row.werk_website_url;
-                        return '<a href="' + link + '" target="_blank">' + data + '</a>';
+                        let hash_id = row.work_id;
+                        return '<a href="' + link + '" target="_blank">' + data + '</a><br /><small>' + hash_id + '</small>';
                     }
 
                     return data;

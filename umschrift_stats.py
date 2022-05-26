@@ -30,6 +30,8 @@ for i, x in df.groupby('work_id'):
 work_stat_df = pd.DataFrame(work_stat)
 merged = pd.merge(df, work_stat_df, on='work_id')
 merged.to_csv(MAN_CSV)
+df = None
+df = pd.read_csv(MAN_CSV)
 
 hansi = df.to_json(orient='records')
 data_table = {
@@ -99,7 +101,7 @@ text = [x for x in text if not '[' in x]  # noqa: E713
 text = [x for x in text if not '›' in x]  # noqa: E713
 text = [x for x in text if not ']' in x]  # noqa: E713
 text = [x for x in text if not '‹' in x]  # noqa: E713
-token = [x for x in text if not x in stopwords]  # noqa: E713
+token = [x.replace('.', '').replace(',', '') for x in text if not x in stopwords]  # noqa: E713
 hansi = Counter(token)
 data = [
     {

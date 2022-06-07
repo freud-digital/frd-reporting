@@ -21,4 +21,4 @@ DIPL_UMSCHRIFT_MAPPING = {
     2: "Umschrift vorhanden"
 }
 STOPWORDS = './stopwords.txt'
-FWF_I = list(range(1900, 1906)) + list(range(1920, 1926))
+FWF_I = list(range(1900, 1906)) + list(range(1920, 1924))

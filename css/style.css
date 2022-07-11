@@ -51,3 +51,7 @@ h6 {
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 }
+
+.cal-heatmap-container {
+    margin: 1em auto;
+}

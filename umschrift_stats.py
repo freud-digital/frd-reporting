@@ -119,3 +119,11 @@ data = [
 
 with open(f"{UMSCHRIFT_DATA.replace('umschrift.json', 'all_works_hc.json')}", 'w') as f:
     json.dump(data, f, ensure_ascii=True)
+
+frieda = df.to_json(orient='records')
+man_all = {
+    'data': json.loads(frieda)
+}
+
+with open(ALL_MAN.replace('.csv', '.json'), 'w') as f:
+    json.dump(man_all, f, ensure_ascii=False)

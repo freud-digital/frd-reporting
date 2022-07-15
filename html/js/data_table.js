@@ -47,6 +47,12 @@ $(document).ready(function () {
             {
                 data: 'work_status'
             },
+            {
+                data: 'file'
+            },
+            {
+                data: 'tei'
+            },
         ],
         dom: 'PfrtipB',
         searchPanes: {

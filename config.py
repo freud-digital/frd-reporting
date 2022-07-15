@@ -15,6 +15,7 @@ MAN_CSV = "./html/data/manifestations.csv"
 ALL_MAN = MAN_CSV.replace('manifestations', 'manifestations_all')
 WORK_SIGNATURS = "./html/data/work_signatures.csv"
 UMSCHRIFT_DATA = "./html/data/umschrift.json"
+HAVE_TEI = "https://raw.githubusercontent.com/freud-digital/frd-working-data/main/manifestations_have_tei.csv"
 
 DIPL_UMSCHRIFT_MAPPING = {
     0: "Umschrift fehlt",

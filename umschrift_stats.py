@@ -41,7 +41,7 @@ hansi = df.to_json(orient='records')
 data_table = {
     'data': json.loads(hansi)
 }
-with open(f"{MAN_CSV.replace('manifestations.csv', 'data_table_2.json', )}", 'w') as f:
+with open(f"{MAN_CSV.replace('manifestations.csv', 'data_table.json', )}", 'w') as f:
     json.dump(data_table, f, ensure_ascii=False)
 
 with open(UMSCHRIFT_DATA, 'r') as f:

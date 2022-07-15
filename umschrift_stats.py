@@ -117,6 +117,23 @@ data = [
     ['FWF' if key else 'Nicht FWF', int(value)] for key, value in man_stat.items()
 ]
 
+with open(f"{UMSCHRIFT_DATA.replace('umschrift.json', 'all_maninfestations_hc.json')}", 'w') as f:
+    json.dump(data, f, ensure_ascii=True)
+
+tup = list()
+for key, stat in df.groupby(['work_id', 'fwf']):
+    tup.append(key)
+
+dct = dict(tup)
+count_fwf = 0
+count_nicht_fwf = 0
+for key, value in dct.items():
+    if value:
+        count_fwf += 1
+    else:
+        count_nicht_fwf += 1
+data = [['Nicht FWF', count_nicht_fwf], ['FWF', count_fwf]]
+
 with open(f"{UMSCHRIFT_DATA.replace('umschrift.json', 'all_works_hc.json')}", 'w') as f:
     json.dump(data, f, ensure_ascii=True)
 
